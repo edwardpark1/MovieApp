@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<meta name="description" content="Movie App utilizing Node and Express">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Movie App</title>
+
+		<link rel="stylesheet" href="/css/reset.css" type="text/css">
+		<link rel="stylesheet" href="/css/style.css" type="text/css">
+		<link rel="stylesheet" href="/assets/fontawesome/css/all.css" type="text/css">
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul id="mobile-panel" class="mobile-menu">
+					<li>
+						<button id="mobile-button" aria-label="Open navigation menu">
+							<i class="fa-solid fa-bars"></i>
+						</button>
+					</li>
+				</ul>
+				<ul id="desktop-panel" class="desktop-menu menu-move">					
+					<li class="close-menu">
+						<button id="close-button" aria-label="Closes navigation menu">
+							<i class="fa-solid fa-xmark"></i>
+						</button>
+					</li>
+					<li><a href="https://ed-movie-app.cyclic.app/">Home</a></li>
+					<li><a href="https://github.com/edwardpark1">GitHub</a></li>
+				</ul>
+			</nav>
+			<form method="POST" action="/">
+				<input type="text" placeholder="Search..." name="search" aria-label="Search for movies" required>
+			</form>
+		</header>
+		<section class="intro">
+			<h1>Welcome to the Movie App</h1>
+			<img class="logo" src="/assets/theMovieDB.svg" alt="The Movie Database Logo">
+			<p class="attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>	
+		</section>
+		<section class="movies-panel">
+			<% if(movie && movie.length > 0) { %>
+				<% for(let i=0; i < movie.length; i++) {%>
+					<article class="movie">
+						<img class="poster" src="<%=movie[i].poster_path%>" alt="Movie Poster of <%= movie[i].original_title %>">
+						<div class="movie-description">
+							<h2 class="movie-title">
+								<%= movie[i].original_title %>
+							</h2>
+							<span class="rating <%= colorMovieRating(movie[i].vote_average); %>">
+								<%= movie[i].vote_average %>
+							</span>
+						</div>
+						<div class="summary">
+							<h3>Overview</h3>
+							<p>
+								<%= movie[i].overview %>	
+							</p>
+						</div>
+					</article>
+				<% } %>
+			<% } else { %>
+				<p class="no-movies">No Movies found. Please try again!</p>
+			<% } %>
+		</section>
+		<footer>
+			<p>&copy; <span id="edp-copyright"></span> | Website Crafted by <a href="https://edpark.space/">Ed Park</a></p>
+		</footer>
+
+		<script type="text/javascript" src="/js/main.js"></script>
+	</body>
+</html>

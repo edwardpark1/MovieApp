@@ -1,0 +1,307 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+body {
+  font-size: 62.5%;
+  background: #2a2f38;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+body > section {
+  margin: 25px;
+}
+
+header, footer {
+  font-size: 1.4rem;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+a {
+    font-weight: 600;
+    color: skyblue;
+    text-decoration: none;
+}
+
+p {
+    line-height: 125%;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.intro {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.movies-panel {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+footer  {
+  justify-content: center;
+}
+
+footer p {
+  text-align: center;
+}
+
+nav a,
+nav button {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #f0f0f0;
+  font-weight: 600;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+input {
+  border-radius: 20px;
+  padding: .75rem;
+  width: 100%;
+  font-size: 1.3rem;
+  background: #1e1e1e;
+  border: 2px solid #f0f0f0;
+  color: #f0f0f0;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-flow: row nowrap;
+  position: static;
+  background: #1e1e1e;
+  height: auto;
+  width: auto;
+  padding: 0;
+}
+
+.mobile-menu li {
+  padding-right: 1rem;
+}
+
+.desktop-menu {
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background: #1e1e1e;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  -webkit-transition: left .2s linear;
+  -ms-transition: left .2s linear;
+  transition: left .2s linear;
+}
+
+.desktop-menu li {
+  padding: 1rem 0;
+  margin-top: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.close-menu {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-move {
+  left: 100vw;
+}
+
+@media all and (min-width: 610px) {
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu li {
+    padding: 1rem;
+    padding-left: 0;
+  }
+
+  .desktop-menu {
+    display: flex;
+    flex-flow: row nowrap;
+    position: static;
+    background: #1e1e1e;
+    height: auto;
+    width: auto;
+    padding: 0;
+  }
+
+  .desktop-menu li {
+    padding: 0;
+    padding-right: 1rem;
+    margin-top: 0;
+    border-bottom: 0;
+  }
+  
+  .close-menu {
+    display: none;
+  }
+
+  nav li { 
+    padding: 1rem;
+    margin: 0;
+    border-bottom: 0;
+  }
+}
+
+h1 {
+  color: #f0f0f0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.logo {
+  width: 125px;
+  height: 16px;
+  margin: 15px auto;
+}
+
+.attribution {
+  text-align: center;
+  font-size: .9rem;
+  line-height: 100%;
+  color: #f0f0f0;
+  font-style: italic;
+}
+
+.poster {
+  display: block;
+  width: 300px; 
+  height: 450px;
+}
+
+.movie {
+  width: 300px;
+  position: relative;
+}
+
+.summary {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 0px;
+  padding: 20px 15px;
+  color: black;
+  background: #f0f0f0;
+  font-size: 1.25rem;
+  opacity: 0;
+  line-height: 125%;
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-transition: all .2s linear;
+  -ms-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.movie-description {
+  background: #1e1e1e;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 15px;
+  height: 200px;
+  color: #f0f0f0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.rating {
+  font-size: 1.1rem;
+  border: 2px solid gold;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-title {
+  padding-right: 1rem;
+  font-size: 1.5rem;
+  line-height: 110%;
+  width: 215px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.movie:hover .summary {
+  z-index: 2;
+  opacity: 1;
+  height: 450px;
+}
+
+.no-movies {
+  text-align: center;
+  font-size: 1.75rem;
+  color: #f0f0f0;
+  line-height: 110%;
+  padding: 1rem;
+  border: 5px dotted #f0f0f0;
+}
+
+.low-rating {
+  background: red;
+  color: #f0f0f0;
+}
+
+.medium-rating {
+  background: yellow;
+  color: black;
+}
+
+.high-rating {
+  background: green;
+  color: #f0f0f0;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
