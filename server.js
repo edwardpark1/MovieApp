@@ -1,3 +1,4 @@
+const helmet = require('helmet');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -15,6 +16,7 @@ require('dotenv').config();
 
 app.set('view engine', 'ejs');
 
+app.use(helmet());
 app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/assets', express.static(__dirname + 'public/assets'));
