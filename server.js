@@ -82,11 +82,13 @@ app.post("/", body('search').trim().isLength({ min: 1 }).escape(), async (req, r
             throw new Error("Search cannot be left blank.");
         }
 
-        if (!req.body.search || typeof req.body.search !== 'string') {
+        const data = req.body;
+
+        if (!data.search || typeof data.search !== 'string') {
             throw new Error("Invalid Search parameter.");
         }
 
-        const queryString = `query=${req.body.search}`;
+        const queryString = `query=${data.search}`;
         const apiURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_API_KEY}&${queryString}`;
         const results = await getMovieData(apiURL);
 
