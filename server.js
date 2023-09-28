@@ -16,7 +16,16 @@ require('dotenv').config();
 
 app.set('view engine', 'ejs');
 
-app.use(helmet());
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+                "img-src": ["'self'", "image.tmdb.org"],
+            },
+        },
+    })
+);
 app.use(express.static('public'));
 app.use('/css', express.static(__dirname + 'public/css'));
 app.use('/assets', express.static(__dirname + 'public/assets'));
@@ -71,6 +80,10 @@ app.post("/", body('search').trim().isLength({ min: 1 }).escape(), async (req, r
 
         if (!validateErrors.isEmpty()) {
             throw new Error("Search cannot be left blank.");
+        }
+
+        if (!req.body.search || typeof req.body.search !== 'string') {
+            throw new Error("Invalid Search parameter.");
         }
 
         const queryString = `query=${req.body.search}`;
