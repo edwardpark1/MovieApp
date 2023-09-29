@@ -6,10 +6,10 @@ const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
 const cors = require('cors');
 const PORT = 8000;
-// Limit to 20 searches per 15 minutes
+// Limit to 15 searches per 15 minutes
 const limiter = rateLimit({
     windowMs: 900000,
-    max: 20
+    max: 15
 });
 
 require('dotenv').config();
